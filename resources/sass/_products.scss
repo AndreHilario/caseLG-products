@@ -1,0 +1,472 @@
+@import 'variables';
+
+// Plano de fundo clean, tipografia e suavidade geral
+body,
+html,
+#app {
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #f8f8fa 65%, lighten($lg-red, 46%) 100%);
+    box-sizing: border-box;
+    color: $lg-dark;
+    overflow-x: hidden;
+}
+
+// HEADER aprimorado
+.main-header {
+    background: rgba(255, 255, 255, 0.95);
+    width: 100vw;
+    box-shadow: 0 2px 16px 0 rgba($lg-dark, 0.07);
+    border-bottom: 1.5px solid $gray-2;
+    z-index: 50;
+    position: sticky;
+    top: 0;
+
+    .header-content {
+        max-width: 1080px;
+        margin: 0 auto;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 0 24px;
+
+        .header-title {
+            text-align: center;
+            flex: 1;
+            font-weight: 800;
+            font-size: 1.59rem;
+            color: $lg-red;
+            letter-spacing: 0.02em;
+            transition: color .16s;
+            margin: 0;
+            text-shadow: 0 2px 18px rgba($lg-red, .04);
+        }
+
+        .header-user-btn {
+            background: rgba($lg-red, 0.09);
+            color: $lg-dark;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.48rem;
+            font-weight: 800;
+            box-shadow: 0 2px 10px rgba($lg-red, 0.07);
+            cursor: pointer;
+            outline: none;
+            border: 1.5px solid $lg-red;
+            transition: background .18s, color .16s, border .13s;
+
+            &:hover,
+            &:focus {
+                background: $lg-red;
+                color: #fff;
+                border: 1.5px solid darken($lg-red, 8%);
+            }
+        }
+    }
+}
+
+// Espaço para o header
+.main-content {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 38px 0 0 0;
+}
+
+// CARD PRINCIPAL MODERNO E CENTRALIZADO
+.product-wrapper {
+    background: #fff;
+    width: 100%;
+    max-width: 620px;
+    margin: 36px auto;
+    border-radius: 22px;
+    box-shadow: 0 10px 38px 0 rgba($lg-red, .11), 0 2px 8px rgba($lg-red, 0.09);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 42px 38px 46px;
+    position: relative;
+
+    h2 {
+        text-align: center;
+        color: $lg-dark;
+        margin-bottom: 28px;
+        font-size: 1.33rem;
+        letter-spacing: .01em;
+        font-weight: 800;
+        line-height: 1.11em;
+    }
+}
+
+.btn-add {
+    background: linear-gradient(98deg, $lg-red 80%, lighten($lg-red, 16%) 100%);
+    color: #fff;
+    padding: 0 32px;
+    height: 48px;
+    border: none;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1.11rem;
+    transition: box-shadow .16s, background .18s, transform .09s;
+    box-shadow: 0 4px 24px 0 rgba($lg-red, 0.08), 0 2px 8px rgba($lg-dark, 0.03);
+    margin: 0 auto 30px auto;
+    display: block;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        background: darken($lg-red, 8%);
+        box-shadow: 0 8px 32px 0 rgba($lg-red, 0.19);
+        outline: none;
+        transform: scale(1.04);
+    }
+}
+
+// FORMULÁRIO harmonioso e centralizado
+.product-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+
+    input,
+    select {
+        width: 100%;
+        box-sizing: border-box;
+        height: 46px;
+        border: 2px solid $gray-1;
+        border-radius: $radius-m;
+        padding: 0 16px;
+        font-size: 1.08rem;
+        color: $lg-dark;
+        background: #faf8fa;
+        transition: border .16s, background .17s;
+        margin-bottom: 4px;
+        box-shadow: 0 2px 6px rgba($lg-red, .03);
+
+        &:focus {
+            border-color: $lg-red;
+            background: lighten($lg-red, 46%);
+        }
+    }
+
+    select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image:
+            url('data:image/svg+xml;utf8,<svg fill="gray" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 18px 18px;
+        padding-right: 36px;
+        cursor: pointer;
+    }
+
+    button {
+        margin-left: 0;
+        margin-top: 6px;
+        background: $lg-red;
+        color: #fff;
+        border: none;
+        border-radius: 100px;
+        padding: 0 26px;
+        height: 43px;
+        font-weight: 700;
+        font-size: 1.07rem;
+        box-shadow: 0 2px 12px rgba($lg-red, 0.07);
+        line-height: 1.02em;
+        transition: background .14s, transform .09s;
+
+        &:hover {
+            background: darken($lg-red, 7%);
+            transform: scale(1.035);
+        }
+
+        &.btn-cancel {
+            background: transparent;
+            color: $lg-red;
+            border: 1.3px solid $lg-red;
+            margin-left: 7px;
+
+            &:hover {
+                background: $lg-red;
+                color: #fff;
+            }
+        }
+    }
+
+    .modal-actions {
+        margin-top: 10px !important;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+// MODAL repaginado
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    background: rgba($lg-dark, 0.18);
+    backdrop-filter: blur(4px);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    .modal-content {
+        background: #fff;
+        border-radius: 22px;
+        box-shadow: 0 16px 40px rgba($lg-red, 0.13), 0 3px 13px rgba(0, 0, 0, 0.08);
+        padding: 46px 36px 36px;
+        min-width: 320px;
+        max-width: 90vw;
+        width: 390px;
+        position: relative;
+        animation: fadeInModal 0.21s cubic-bezier(.37, 1.43, .67, .99);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+            color: $lg-red;
+            margin-bottom: 18px;
+            text-align: center;
+            font-size: 1.18rem;
+            font-weight: 800;
+            letter-spacing: .012em;
+        }
+
+        .modal-actions {
+            margin-top: 12px;
+        }
+    }
+}
+
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+// TABELA elegante, flat, “Pinterest style”
+.table-responsive {
+    width: 100%;
+    margin: 0 0 20px 0;
+    overflow-x: auto;
+    border-radius: 17px;
+    box-shadow: 0 2px 10px rgba($lg-red, 0.08);
+    background: transparent;
+}
+
+.product-table {
+    margin: 0 auto;
+    width: 100%;
+    background: transparent;
+    border-radius: 14px;
+
+    th,
+    td {
+        padding: 11px 7px;
+        text-align: center;
+        font-size: 1.004rem;
+    }
+
+    th {
+        background: rgba($lg-red, 0.075);
+        color: $lg-dark;
+        font-weight: 700;
+        border-bottom: 1.3px solid $lg-red;
+        font-size: 1.045rem;
+        letter-spacing: .01em;
+    }
+
+    tr {
+        border-bottom: 1px solid $gray-2;
+        transition: background .16s;
+
+        &:hover {
+            background: linear-gradient(90deg, lighten($lg-red, 46%) 0%, #fff 100%);
+        }
+    }
+
+    td {
+        color: $lg-dark;
+        background: transparent;
+        transition: background .16s, color .13s;
+    }
+
+    .btn-edit,
+    .btn-delete {
+        margin-right: 6px;
+        padding: 5px 14px;
+        border-radius: 11px;
+        font-weight: 600;
+        border: 1.4px solid $lg-red;
+        font-size: 0.96rem;
+        transition: background .13s, border .12s, color .12s;
+    }
+
+    .btn-edit {
+        background: #fff;
+        color: $lg-red;
+
+        &:hover {
+            background: $lg-red;
+            border-color: $lg-red;
+            color: #fff;
+        }
+    }
+
+    .btn-delete {
+        background: #fff;
+        color: $lg-red;
+
+        &:hover {
+            background: darken($lg-red, 10%);
+            color: #fff;
+        }
+    }
+}
+
+// Scroll refinado
+.table-responsive {
+    scrollbar-width: thin;
+    scrollbar-color: $lg-red $gray-bg;
+
+    &::-webkit-scrollbar {
+        height: 7px;
+        background: $gray-bg;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $lg-red;
+        border-radius: 8px;
+    }
+}
+
+// Responsividade fina
+@media (max-width: 900px) {
+    .main-header .header-content {
+        padding: 0 7px;
+    }
+
+    .main-content {
+        padding-top: 10px;
+    }
+
+    .product-wrapper {
+        padding: 22px 10px 28px;
+        max-width: 98vw;
+    }
+
+    .modal-content {
+        max-width: 97vw;
+        width: 99vw;
+        min-width: unset;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-header .header-content {
+        padding: 0 2px;
+    }
+
+    .main-content {
+        padding-top: 10px;
+    }
+
+    .product-wrapper {
+        padding: 9px 2vw 6vw;
+    }
+
+    .modal-content {
+        padding: 13px 2vw 18px !important;
+    }
+
+    .product-form input,
+    .product-form select,
+    .product-form button {
+        width: 100%;
+    }
+
+    .product-table th,
+    .product-table td {
+        padding: 7px 2px;
+        font-size: 0.9rem;
+        min-width: 80px;
+    }
+}
+
+// Botões maiores para touch
+@media (pointer: coarse) {
+
+    .btn-add,
+    .product-form button,
+    .header-user-btn {
+        min-height: 48px;
+        font-size: 1.13rem;
+    }
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: background 0.13s, box-shadow .13s;
+    display: inline-flex;
+    align-items: center;
+
+    svg {
+        display: block;
+        transition: filter .16s;
+    }
+}
+
+.btn-edit {
+    &:hover {
+        background: lighten($lg-red, 39%);
+        box-shadow: 0 2px 7px rgba($lg-red, 0.08);
+
+        svg path {
+            filter: brightness(0.9) saturate(2);
+        }
+    }
+}
+
+.btn-delete {
+    margin-left: 6px;
+
+    &:hover {
+        background: lighten($lg-red, 18%);
+        box-shadow: 0 4px 15px rgba($lg-red, 0.15);
+
+        svg path,
+        svg {
+            stroke: $lg-red;
+            filter: brightness(0.85) saturate(2);
+        }
+    }
+}

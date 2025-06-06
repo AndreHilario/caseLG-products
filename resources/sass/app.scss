@@ -1,1 +1,10 @@
-//
+@import 'variables';
+@import 'products';
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: $gray-bg;
+    color: $lg-dark;
+    margin: 0;
+    padding: 0;
+}
