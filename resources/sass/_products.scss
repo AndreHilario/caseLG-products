@@ -1,6 +1,5 @@
 @import 'variables';
 
-// Plano de fundo clean, tipografia e suavidade geral
 body,
 html,
 #app {
@@ -15,7 +14,6 @@ html,
     overflow-x: hidden;
 }
 
-// HEADER aprimorado
 .main-header {
     background: rgba(255, 255, 255, 0.95);
     width: 100vw;
@@ -75,7 +73,6 @@ html,
     }
 }
 
-// Espaço para o header
 .main-content {
     min-height: calc(100vh - 70px);
     display: flex;
@@ -84,11 +81,10 @@ html,
     padding: 38px 0 0 0;
 }
 
-// CARD PRINCIPAL MODERNO E CENTRALIZADO
 .product-wrapper {
     background: #fff;
     width: 100%;
-    max-width: 620px;
+    max-width: 90%;
     margin: 36px auto;
     border-radius: 22px;
     box-shadow: 0 10px 38px 0 rgba($lg-red, .11), 0 2px 8px rgba($lg-red, 0.09);
@@ -133,7 +129,6 @@ html,
     }
 }
 
-// FORMULÁRIO harmonioso e centralizado
 .product-form {
     display: flex;
     flex-direction: column;
@@ -217,7 +212,6 @@ html,
     }
 }
 
-// MODAL repaginado
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -269,7 +263,6 @@ html,
     }
 }
 
-// TABELA elegante, flat, “Pinterest style”
 .table-responsive {
     width: 100%;
     margin: 0 0 20px 0;
@@ -349,7 +342,6 @@ html,
     }
 }
 
-// Scroll refinado
 .table-responsive {
     scrollbar-width: thin;
     scrollbar-color: $lg-red $gray-bg;
@@ -365,7 +357,6 @@ html,
     }
 }
 
-// Responsividade fina
 @media (max-width: 900px) {
     .main-header .header-content {
         padding: 0 7px;
@@ -418,7 +409,6 @@ html,
     }
 }
 
-// Botões maiores para touch
 @media (pointer: coarse) {
 
     .btn-add,

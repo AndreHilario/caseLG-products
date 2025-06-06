@@ -82,7 +82,7 @@ html,
 .product-wrapper {
   background: #fff;
   width: 100%;
-  max-width: 620px;
+  max-width: 90%;
   margin: 36px auto;
   border-radius: 22px;
   box-shadow: 0 10px 38px 0 rgba(238, 18, 88, 0.11), 0 2px 8px rgba(238, 18, 88, 0.09);

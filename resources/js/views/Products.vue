@@ -45,10 +45,8 @@ export default {
             api.get('/categories').then(res => this.categories = res.data.data ? res.data.data : res.data)
         },
         openCreateModal() {
-            console.log('Abrindo modal');
             this.form = defaultForm()
             this.showModal = true
-            console.log(this.showModal)
         },
         save(formData) {
             if (formData.id) {

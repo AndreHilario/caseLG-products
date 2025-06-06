@@ -1975,10 +1975,41 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/api */ "./resources/js/services/api.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ProductTable',
   props: {
     products: Array
+  },
+  data: function data() {
+    return {
+      modalRemove: false,
+      selectedProduct: null
+    };
+  },
+  methods: {
+    fetchProducts: function fetchProducts() {
+      var _this = this;
+      _services_api__WEBPACK_IMPORTED_MODULE_0__["default"].get('/products').then(function (res) {
+        return _this.products = res.data.data;
+      });
+    },
+    confirmRemove: function confirmRemove(product) {
+      this.selectedProduct = product;
+      this.modalRemove = true;
+    },
+    closeModal: function closeModal() {
+      this.modalRemove = false;
+      this.selectedProduct = null;
+    },
+    removeConfirmed: function removeConfirmed() {
+      var _this2 = this;
+      _services_api__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("/products/".concat(this.selectedProduct.id)).then(function () {
+        return _this2.fetchProducts();
+      });
+      this.closeModal();
+    }
   }
 });
 
@@ -2038,10 +2069,8 @@ var defaultForm = function defaultForm() {
       });
     },
     openCreateModal: function openCreateModal() {
-      console.log('Abrindo modal');
       this.form = defaultForm();
       this.showModal = true;
-      console.log(this.showModal);
     },
     save: function save(formData) {
       var _this3 = this;
@@ -2270,6 +2299,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 var render = function render() {
+  var _vm$selectedProduct;
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
@@ -2279,7 +2309,10 @@ var render = function render() {
   }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.products, function (p) {
     return _c("tr", {
       key: p.id
-    }, [_c("td", [_vm._v(_vm._s(p.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(p.category ? p.category.name : ""))]), _vm._v(" "), _c("td", [_vm._v("R$ " + _vm._s(p.latest_price ? p.latest_price.price : ""))]), _vm._v(" "), _c("td", [_c("button", {
+    }, [_c("td", [_vm._v(_vm._s(p.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(p.category ? p.category.name : ""))]), _vm._v(" "), _c("td", [_vm._v("\n                    R$\n                    " + _vm._s(p.latest_price && p.latest_price.price !== undefined ? parseFloat(p.latest_price.price).toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }) : "") + "\n                ")]), _vm._v(" "), _c("td", [_c("button", {
       staticClass: "btn-icon btn-edit",
       attrs: {
         title: "Editar"
@@ -2309,27 +2342,101 @@ var render = function render() {
       },
       on: {
         click: function click($event) {
-          return _vm.$emit("remove", p);
+          return _vm.confirmRemove(p);
         }
       }
     }, [_c("svg", {
       attrs: {
         xmlns: "http://www.w3.org/2000/svg",
-        fill: "none",
-        viewBox: "0 0 22 22",
         width: "20",
-        height: "20"
+        height: "20",
+        fill: "none",
+        viewBox: "0 0 24 24"
       }
-    }, [_c("path", {
+    }, [_c("rect", {
       attrs: {
-        d: "M6.5 6.5v8.25M11 6.5v8.25M15.5 6.5v8.25M4.5 6.5h13m-10-3h7a1 1 0 011 1V6.5H6.5V4.5a1 1 0 011-1z",
+        x: "6",
+        y: "7.5",
+        width: "12",
+        height: "12",
+        rx: "2",
+        stroke: "#a50034",
+        "stroke-width": "1.4"
+      }
+    }), _vm._v(" "), _c("path", {
+      attrs: {
+        d: "M10 11v4M14 11v4",
         stroke: "#a50034",
         "stroke-width": "1.4",
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round"
+        "stroke-linecap": "round"
+      }
+    }), _vm._v(" "), _c("path", {
+      attrs: {
+        d: "M4 7.5h16",
+        stroke: "#a50034",
+        "stroke-width": "1.1"
+      }
+    }), _vm._v(" "), _c("rect", {
+      attrs: {
+        x: "9",
+        y: "4",
+        width: "6",
+        height: "2.5",
+        rx: "1.2",
+        stroke: "#a50034",
+        "stroke-width": "1.2",
+        fill: "#fff"
       }
     })])])])]);
-  }), 0)])]);
+  }), 0)]), _vm._v(" "), _vm.modalRemove ? _c("div", {
+    staticClass: "modal-overlay",
+    on: {
+      mousedown: function mousedown($event) {
+        if ($event.target !== $event.currentTarget) return null;
+        return _vm.closeModal.apply(null, arguments);
+      }
+    }
+  }, [_c("div", {
+    staticClass: "modal-content product-form",
+    attrs: {
+      role: "dialog",
+      "aria-modal": "true"
+    }
+  }, [_c("h2", {
+    staticStyle: {
+      "text-align": "center",
+      "margin-bottom": "18px"
+    },
+    attrs: {
+      id: "modal-title"
+    }
+  }, [_vm._v("Excluir Produto")]), _vm._v(" "), _c("p", {
+    staticStyle: {
+      "text-align": "center",
+      color: "#555",
+      "margin-bottom": "1.3em"
+    }
+  }, [_vm._v("\n                Você tem certeza que deseja excluir "), _c("br"), _vm._v(" "), _c("b", [_vm._v(_vm._s((_vm$selectedProduct = _vm.selectedProduct) === null || _vm$selectedProduct === void 0 ? void 0 : _vm$selectedProduct.name))]), _vm._v("?\n            ")]), _vm._v(" "), _c("div", {
+    staticClass: "modal-actions",
+    staticStyle: {
+      display: "flex",
+      "justify-content": "center",
+      gap: "16px"
+    }
+  }, [_c("button", {
+    staticClass: "btn-cancel",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: _vm.closeModal
+    }
+  }, [_vm._v("Cancelar")]), _vm._v(" "), _c("button", {
+    staticClass: "btn-delete confirm",
+    on: {
+      click: _vm.removeConfirmed
+    }
+  }, [_vm._v("Confirmar")])])])]) : _vm._e()]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
