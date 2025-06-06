@@ -88,7 +88,14 @@ export default {
             this.selectedProduct = null;
         },
         removeConfirmed() {
-            api.delete(`/products/${this.selectedProduct.id}`).then(() => this.fetchProducts())
+            api.delete(`/products/${this.selectedProduct.id}`)
+                .then(() => {
+                        this.$toast.success('Produto excluído com sucesso!')
+                        this.fetchProducts()
+                })
+                .catch(() => {
+                        this.$toast.error('Erro ao excluir o produto.')
+                })
             this.closeModal();
         }
     }

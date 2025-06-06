@@ -1,11 +1,17 @@
 <template>
     <div>
+        <div class="intro-overlay">
+            <div class="intro-message">Bem-vindo(a) a Gestão de Produtos LG👋</div>
+        </div>
+
         <Header />
         <div class="product-wrapper">
             <div class="header-row">
-                <button class="btn-add" @click="openCreateModal">
-                    Cadastrar
-                </button>
+                <div>
+                    <button class="btn-add" @click="openCreateModal">
+                        Cadastrar Produto
+                    </button>
+                </div>
             </div>
             <ProductForm :categories="categories" :form="form" :visible="showModal" @save="save" @close="closeModal" />
             <ProductTable :products="products" @edit="edit" @remove="remove" />
@@ -52,14 +58,22 @@ export default {
             if (formData.id) {
                 api.put(`/products/${formData.id}`, formData)
                     .then(() => {
-                        this.fetchProducts()
-                        this.closeModal()
+                    this.$toast.success('Produto atualizado com sucesso!')
+                    this.fetchProducts()
+                    this.closeModal()
+                    })
+                    .catch(() => {
+                    this.$toast.error('Erro ao atualizar produto.')
                     })
             } else {
                 api.post('/products', formData)
                     .then(() => {
-                        this.fetchProducts()
-                        this.closeModal()
+                    this.$toast.success('Produto cadastrado com sucesso!')
+                    this.fetchProducts()
+                    this.closeModal()
+                    })
+                    .catch(() => {
+                    this.$toast.error('Erro ao cadastrar produto.')
                     })
             }
         },
@@ -73,8 +87,16 @@ export default {
             this.showModal = true
         },
         remove(prod) {
-            if (confirm('Confirma excluir?'))
-                api.delete(`/products/${prod.id}`).then(() => this.fetchProducts())
+            if (confirm('Confirma excluir?')) {
+                api.delete(`/products/${prod.id}`)
+                    .then(() => {
+                        this.$toast.success('Produto excluído com sucesso!')
+                        this.fetchProducts()
+                    })
+                    .catch(() => {
+                        this.$toast.error('Erro ao excluir o produto.')
+                    })
+            }
         },
         closeModal() {
             this.showModal = false

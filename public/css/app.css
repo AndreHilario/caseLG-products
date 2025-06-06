@@ -1,11 +1,12 @@
-body,
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;
+
+500;600;700&display=swap);body,
 html,
 #app {
   min-height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
   background: linear-gradient(135deg, #f8f8fa 65%, rgb(253.7015748031, 236.8984251969, 242.2448818898) 100%);
   box-sizing: border-box;
   color: #98173e;
@@ -13,7 +14,7 @@ html,
 }
 
 .main-header {
-  background: rgba(255, 255, 255, 0.95);
+  background: #ee1258;
   width: 100vw;
   box-shadow: 0 2px 16px 0 rgba(152, 23, 62, 0.07);
   border-bottom: 1.5px solid #8d8d8d;
@@ -38,7 +39,7 @@ html,
   flex: 1;
   font-weight: 800;
   font-size: 1.59rem;
-  color: #ee1258;
+  color: #fff;
   letter-spacing: 0.02em;
   transition: color 0.16s;
   margin: 0;
@@ -80,17 +81,20 @@ html,
 }
 
 .product-wrapper {
-  background: #fff;
   width: 100%;
   max-width: 90%;
-  margin: 36px auto;
+  margin: 10px auto;
   border-radius: 22px;
-  box-shadow: 0 10px 38px 0 rgba(238, 18, 88, 0.11), 0 2px 8px rgba(238, 18, 88, 0.09);
   display: flex;
   flex-direction: column;
   align-items: stretch;
   padding: 42px 38px 46px;
   position: relative;
+}
+
+.product-wrapper .header-row {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .product-wrapper h2 {
@@ -274,7 +278,7 @@ html,
 .product-table {
   margin: 0 auto;
   width: 100%;
-  background: transparent;
+  background: #fff;
   border-radius: 14px;
 }
 
@@ -286,8 +290,8 @@ html,
 }
 
 .product-table th {
-  background: rgba(238, 18, 88, 0.075);
-  color: #98173e;
+  background: #ee1258;
+  color: #fff;
   font-weight: 700;
   border-bottom: 1.3px solid #ee1258;
   font-size: 1.045rem;
@@ -323,6 +327,7 @@ html,
 .product-table .btn-edit {
   background: #fff;
   color: #ee1258;
+  cursor: pointer;
 }
 
 .product-table .btn-edit:hover {
@@ -334,6 +339,7 @@ html,
 .product-table .btn-delete {
   background: #fff;
   color: #ee1258;
+  cursor: pointer;
 }
 
 .product-table .btn-delete:hover {
@@ -343,12 +349,12 @@ html,
 
 .table-responsive {
   scrollbar-width: thin;
-  scrollbar-color: #ee1258 #f7f7f8;
+  scrollbar-color: #ee1258 #FFFFF0;
 }
 
 .table-responsive::-webkit-scrollbar {
   height: 7px;
-  background: #f7f7f8;
+  background: #FFFFF0;
 }
 
 .table-responsive::-webkit-scrollbar-thumb {
@@ -433,6 +439,10 @@ html,
   transition: filter 0.16s;
 }
 
+.btn-edit {
+  cursor: pointer;
+}
+
 .btn-edit:hover {
   background: rgb(251.3122047244, 203.5877952756, 218.7728346457);
   box-shadow: 0 2px 7px rgba(238, 18, 88, 0.08);
@@ -444,6 +454,7 @@ html,
 
 .btn-delete {
   margin-left: 6px;
+  cursor: pointer;
 }
 
 .btn-delete:hover {
@@ -457,9 +468,62 @@ html,
   filter: brightness(0.85) saturate(2);
 }
 
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ee1258, rgb(245.5094488189, 122.6905511811, 161.7692913386));
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeOutIntro 3.5s ease-out forwards;
+  pointer-events: none;
+}
+
+.intro-overlay .intro-message {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+  animation: scaleFade 2s ease-in-out;
+}
+
+@keyframes fadeOutIntro {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes scaleFade {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  40% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 body {
-  font-family: "Inter", Arial, sans-serif;
-  background: #f7f7f8;
+  font-family: "Poppins", "Inter", Arial, sans-serif;
+  background: #FFFFF0;
   color: #98173e;
   margin: 0;
   padding: 0;

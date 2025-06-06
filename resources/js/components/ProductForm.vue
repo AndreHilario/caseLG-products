@@ -12,8 +12,8 @@
                 </select>
                 <input v-model="internalForm.price" type="number" min="0" step="0.01" placeholder="Preço" required />
                 <div class="modal-actions">
-                    <button type="button" class="btn-cancel" @click="close">Cancelar</button>
-                    <button type="submit">
+                    <button type="button" class="btn-cancel" @click="close" style="cursor: pointer;">Cancelar</button>
+                    <button type="submit" style="cursor: pointer;">
                         {{ internalForm.id ? "Atualizar" : "Cadastrar" }}
                     </button>
                 </div>

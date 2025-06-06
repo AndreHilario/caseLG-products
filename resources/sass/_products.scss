@@ -7,7 +7,6 @@ html,
     width: 100vw;
     margin: 0;
     padding: 0;
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
     background: linear-gradient(135deg, #f8f8fa 65%, lighten($lg-red, 46%) 100%);
     box-sizing: border-box;
     color: $lg-dark;
@@ -15,7 +14,7 @@ html,
 }
 
 .main-header {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba($lg-red, 1.2);
     width: 100vw;
     box-shadow: 0 2px 16px 0 rgba($lg-dark, 0.07);
     border-bottom: 1.5px solid $gray-2;
@@ -38,7 +37,7 @@ html,
             flex: 1;
             font-weight: 800;
             font-size: 1.59rem;
-            color: $lg-red;
+            color: #fff;
             letter-spacing: 0.02em;
             transition: color .16s;
             margin: 0;
@@ -82,17 +81,20 @@ html,
 }
 
 .product-wrapper {
-    background: #fff;
     width: 100%;
     max-width: 90%;
-    margin: 36px auto;
+    margin: 10px auto;
     border-radius: 22px;
-    box-shadow: 0 10px 38px 0 rgba($lg-red, .11), 0 2px 8px rgba($lg-red, 0.09);
     display: flex;
     flex-direction: column;
     align-items: stretch;
     padding: 42px 38px 46px;
     position: relative;
+
+    .header-row {
+        display: flex;
+        justify-content: flex-end;
+    }
 
     h2 {
         text-align: center;
@@ -275,7 +277,7 @@ html,
 .product-table {
     margin: 0 auto;
     width: 100%;
-    background: transparent;
+    background: #fff;
     border-radius: 14px;
 
     th,
@@ -286,8 +288,8 @@ html,
     }
 
     th {
-        background: rgba($lg-red, 0.075);
-        color: $lg-dark;
+        background: rgba($lg-red, 1.2);
+        color: #fff;
         font-weight: 700;
         border-bottom: 1.3px solid $lg-red;
         font-size: 1.045rem;
@@ -323,7 +325,7 @@ html,
     .btn-edit {
         background: #fff;
         color: $lg-red;
-
+        cursor: pointer;
         &:hover {
             background: $lg-red;
             border-color: $lg-red;
@@ -334,6 +336,7 @@ html,
     .btn-delete {
         background: #fff;
         color: $lg-red;
+        cursor: pointer;
 
         &:hover {
             background: darken($lg-red, 10%);
@@ -436,6 +439,8 @@ html,
 }
 
 .btn-edit {
+    cursor: pointer;
+
     &:hover {
         background: lighten($lg-red, 39%);
         box-shadow: 0 2px 7px rgba($lg-red, 0.08);
@@ -448,6 +453,7 @@ html,
 
 .btn-delete {
     margin-left: 6px;
+    cursor: pointer;
 
     &:hover {
         background: lighten($lg-red, 18%);
@@ -458,5 +464,58 @@ html,
             stroke: $lg-red;
             filter: brightness(0.85) saturate(2);
         }
+    }
+}
+
+.intro-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, $lg-red, lighten($lg-red, 22%));
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeOutIntro 3.5s ease-out forwards;
+    pointer-events: none;
+
+    .intro-message {
+        color: #fff;
+        font-size: 2rem;
+        font-weight: 800;
+        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+        animation: scaleFade 2s ease-in-out;
+    }
+}
+
+@keyframes fadeOutIntro {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.98);
+    }
+}
+
+@keyframes scaleFade {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    40% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
     }
 }
